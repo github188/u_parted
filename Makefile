@@ -10,4 +10,4 @@ main.o: main.c myfunc.h
 	gcc	-c main.c
 
 clean:
-	rm	main $(objects) *~  -rf
+	rm	main $(objects) *~ *.txt -rf

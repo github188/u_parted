@@ -5,7 +5,6 @@
 #include <string.h>
 #include <stdarg.h>
 #include <errno.h>
-#include <dirent.h>
 #include <sys/types.h>
 #include<sys/wait.h>
 #include <fcntl.h>
@@ -28,7 +27,7 @@ void Log(const char* format, ... )
 
     /*printf("%04d-%02d-%02d %02d:%02d:%02d %s\n", local->tm_year+1900, local->tm_mon, local->tm_mday, local->tm_hour, local->tm_min, local->tm_sec,  wzLog);*/
 
-    sprintf(buffer,"%04d-%02d-%02d %02d:%02d:%02d %s\n", local->tm_year+1900, local->tm_mon+1, local->tm_mday, local->tm_hour, local->tm_min, local->tm_sec, wzLog);  
+    sprintf(buffer,"%04d-%02d-%02d %02d:%02d:%02d %s\n", local->tm_year+1900, local->tm_mon, local->tm_mday, local->tm_hour, local->tm_min, local->tm_sec, wzLog);  
 
     file = fopen("./Log/mytest.log","a+");  
 	if (file == NULL)
@@ -95,23 +94,5 @@ int open_txt(const char* txtstring)
 	return tmp;
 }
 
-int mk_dir(const char *dir)  
-{  
-    DIR *mydir = NULL;  
-    if((mydir= opendir(dir))==NULL) /*判断目录是否存在*/ 
-    {  
-      int ret = mkdir(dir, 0777); /*创建目录*/
-      if (ret != 0)  
-      {  
-          return -1;  
-      }  
-      printf("%s created sucess!\n", dir);  
-    }  
-    else  
-    {  
-        printf("%s exist!\n", dir);  
-    }  
-  
-    return 0;  
-}  
+
 
