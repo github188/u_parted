@@ -1,20 +1,4 @@
-
-
-2016-07-04 10:41:12 cmd: fdisk -l > diskmsg.txt	 Normal termination, exit status = 0
-
-2016-07-04 10:41:12 cmd: grep -c  /dev/sdb diskmsg.txt > sdbcnt.txt	 Normal termination, exit status = 0
-
-2016-07-04 10:41:12 cmd: df > dfmsg.txt	 Normal termination, exit status = 0
-
-2016-07-04 10:41:12 cmd: grep -c  /dev/sdb1 dfmsg.txt > mntcnt.txt	 Normal termination, exit status = 0
-
-2016-07-04 10:41:12 cmd: umount /dev/sdb1	 Normal termination, exit status = 0
-
-2016-07-04 10:41:13 cmd: ./fdisk.sh | sudo fdisk /dev/sdb	 Normal termination, exit status = 0
-
-2016-07-04 10:41:40 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 0
-
-2016-07-04 10:41:41 cmd: mount -t vfat /dev/sdb1 /mnt/upoint	 Normal termination, exit status = 0
-
-2016-07-04 10:41:42 cmd: umount /dev/sdb1	 Normal termination, exit status = 0
-
+2016-08-05 17:41:30 cmd: grep -c  /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-05 17:41:30 cmd: ./fdisk.sh | sudo fdisk /dev/sdb	 Normal termination, exit status = 1
+2016-08-05 17:41:30 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 1
+2016-08-05 17:41:30 mount /dev/sdb1 fail

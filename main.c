@@ -3,14 +3,14 @@
 int main(void)
 {
 	/*定义打开各个文件的描述符*/
-	int diskmsg_fd = -2;
-	int sdbcnt_fd = -2;
-	int dfmsg_fd = -2;
+	//int diskmsg_fd = -2;
+	//int sdbcnt_fd = -2;
+	//int dfmsg_fd = -2;
 	int mntcnt_fd = -2;
 	int mytest_log_fd = -2;
 
 	/*记录U盘和分区数量*/
-	char sdbcnt = 0;
+	//char sdbcnt = 0;
 	char mntcnt = 0;
 
 	/*定义接收system函数返回值变量*/
@@ -18,51 +18,54 @@ int main(void)
 
 	/*存储临时信息变量*/
 	char buf[BUFSIZE] = {0};
-	char ret1 = 0;
-	char ret2 = 0;
+	char ret = 0;
 
-	/*挂载点根目录下创建log目录，log下创建文件mytest.log*/
-	const char *directory = "/mnt/upoint/log"; 
+	/*挂载点根目录/mnt/upoint 挂载点log子目录，log下文件mytest.log*/
+	const char *mntpoint = "/mnt/upoint";
+	const char *subdir = "/mnt/upoint/log"; 
 	const char *file = "/mnt/upoint/log/mytest.log";
+	const char *tmptxt = "./mntcnt.txt";
 
-	diskmsg_fd = open_txt("./diskmsg.txt");
-	sdbcnt_fd = open_txt("./sdbcnt.txt");
-	dfmsg_fd = open_txt("./dfmsg.txt");
-	mntcnt_fd = open_txt("./mntcnt.txt");
+	//diskmsg_fd = open_txt("./diskmsg.txt");
+	//sdbcnt_fd = open_txt("./sdbcnt.txt");
+	//dfmsg_fd = open_txt("./dfmsg.txt");
+	mntcnt_fd = open_txt(tmptxt);
 
-	status = system(diskcmd); /*获取磁盘信息*/
-	stat_check(status, diskcmd);
+	//status = system(diskcmd); /*获取磁盘信息*/
+	//stat_check(status, diskcmd);
 
-	status = system(sdbcnt_cmd); /*检测是否有/dev/sdb设备*/
-	stat_check(status, sdbcnt_cmd);
+	//status = system(sdbcnt_cmd); /*检测是否有/dev/sdb设备*/
+	//stat_check(status, sdbcnt_cmd);
 
-	status = system(dfcmd); /*获取已挂载的分区信息*/
-	stat_check(status, dfcmd);
+	//status = system(dfcmd); /*获取已挂载的分区信息*/
+	//stat_check(status, dfcmd);
 
-	status = system(mntcnt_cmd); /*获取/dev/sdb1挂载信息*/
+	status = system(mntcnt_cmd); /*获取/dev/sdb1挂载信息，因为有些系统识别磁盘后会自动挂载分区*/
 	stat_check(status, mntcnt_cmd);
 	
-	ret1 = read(mntcnt_fd, buf, 1); /*获得/dev/sdb1分区已挂载次数*/
-	if (ret1 == -1)
+	ret = read(mntcnt_fd, buf, 1); /*获得/dev/sdb1分区已挂载次数*/
+	if (ret == -1)
 	{
-		perror("read mntcnt");
+		Log("read mntcnt");
+		close(mntcnt_fd);
 		exit(-1);		
 	}
 	mntcnt = atoi(buf);
 	if (mntcnt > 0)
 	{
 		printf("/dev/sdb1 device mounted num:%d，start umount...\n", mntcnt);
-		while(mntcnt--)
+		while(mntcnt--) /*实际应用中一般不会将文件系统(分区)挂载在多个目录下*/
 		{
-			status = system(umntcmd); /*格式化前先卸载原来的同名分区*/
+			status = system(umntcmd); /*格式化前先卸载原来的同名分区，由于不知道自动挂载的目录名，所以此处不能用umount函数*/
 			stat_check(status, umntcmd);
 		}
-		printf("umount success!\n");
+		printf("first umount /dev/sdb1 success.\n");
+		close(mntcnt_fd);
 	}
 
-	memset(buf, 0, strlen(buf)+1);
-	ret2 = read(sdbcnt_fd, buf, 1);
-	if (ret2 == -1)
+	/*memset(buf, 0, strlen(buf)+1);
+	ret = read(sdbcnt_fd, buf, 1);
+	if (ret == -1)
 	{
 		perror("read sdbcnt");
 		exit(-1);
@@ -74,22 +77,35 @@ int main(void)
 		return 0;
 	}
 	else 
-	{
-		printf("make a partition for /dev/sdb, capacity is the whole \n");
-		status = system(fdiskcmd); /*建立分区*/
+	{*/
+		printf("make a partition for /dev/sdb, capacity is the whole.\n");
+		status = system(fdiskcmd); /*为/dev/sdb设备建立分区*/
 		stat_check(status, fdiskcmd);
-	}
+	//}
 
 	status = system(fmtcmd); /*格式化sdb1分区文件系统为FAT32*/
 	stat_check(status, fmtcmd);
 
-	status = system(mntcmd); /*挂载/dev/sdb1分区*/
-	stat_check(status, mntcmd);
-
-	ret1 = mkdir(directory, 0777); /*在挂载点下创建Log目录*/
-	if (ret1 == -1)
+	ret = mk_dir(mntpoint); /*创建挂载点目录*/
+	if (ret == -1)
 	{
-		perror("create directory fail");
+		Log("create mntdir fail");
+		exit(-1);
+	}
+
+	//status = system(mntcmd); /*挂载/dev/sdb1分区*/
+	//stat_check(status, mntcmd);
+	ret = mount("/dev/sdb1", "/mnt/upoint", "vfat", 0, "iocharset=utf8");
+	if (ret == -1)
+	{
+		Log("mount /dev/sdb1 fail");
+		exit(-1);
+	}
+
+	ret = mk_dir(subdir); /*在挂载点下创建Log目录*/
+	if (ret == -1)
+	{
+		Log("create subdir fail");
 		exit(-1);
 	}
 	else
@@ -99,30 +115,39 @@ int main(void)
 		mytest_log_fd = open(file, O_RDWR|O_CREAT|O_TRUNC, 0666); 
 		if (mytest_log_fd == -1)
 		{
-			perror("create mytest.log fail");
+			Log("create mytest.log fail");
 			exit(-1);
 		}
-		ret2 = write(mytest_log_fd, wrbuf, strlen(wrbuf));
-		if (ret2 == -1)
+		ret = write(mytest_log_fd, wrbuf, strlen(wrbuf));
+		if (ret == -1)
 		{
-			perror("write mytest.log fail");
+			Log("write mytest.log fail");
 			exit(-1);
 		}
 		close(mytest_log_fd); /*卸载/dev/sdb1前，关闭挂载点中打开的文件*/
 
-		printf("write mytest.log complete, start umount /dev/sdb1\n");
-		status = system(umntcmd);
-		stat_check(status, umntcmd);
+		printf("write mytest.log complete, start umount /dev/sdb1...\n");
+		//status = system(umntcmd);
+		//stat_check(status, umntcmd);
+		ret = umount(mntpoint);
+		if (ret == -1)
+		{
+			Log("final umount /dev/sdb1 fail");
+		}
+		printf("final umount /dev/sdb1 complete.\n");
 	}
 	
-	close(diskmsg_fd);
-	close(sdbcnt_fd);
-	close(dfmsg_fd);
-	close(mntcnt_fd);
+	ret = unlink(tmptxt);
+	if (ret == -1)
+	{
+		Log("unlink mntcnt.txt fail");
+		exit(-1);
+	}
+	//close(diskmsg_fd);
+	//close(sdbcnt_fd);
+	//close(dfmsg_fd);
+	//close(mntcnt_fd);
 	
 	return 0;
 }
-
-
-
 
