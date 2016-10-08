@@ -1,0 +1,89 @@
+2016-08-09 08:36:04 cmd: grep -c  /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 0
+2016-08-09 08:36:04 cmd: umount /dev/sdb1	 Normal termination, exit status = 0
+2016-08-09 08:36:04 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 0
+2016-08-09 08:36:06 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 08:36:09 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 0
+2016-08-09 10:23:26 cmd: grep -c /dev/sdb1 /proc/mounts > mntcnt.txt	 Normal termination, exit status = 0
+2016-08-09 10:23:26 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 1
+2016-08-09 10:23:26 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 10:23:26 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 1
+2016-08-09 10:23:27 final umount /dev/sdb1 fail
+2016-08-09 10:28:33 cmd: grep -c /dev/sdb1 /proc/mounts > mntcnt.txt	 Normal termination, exit status = 0
+2016-08-09 10:31:37 cmd: grep -c /dev/sdb1 /proc/mounts > mntcnt.txt	 Normal termination, exit status = 0
+2016-08-09 10:31:37 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 1
+2016-08-09 10:31:37 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 10:31:37 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 1
+2016-08-09 10:31:37 final umount /dev/sdb1 fail
+2016-08-09 10:32:56 cmd: grep -c /dev/sdb1 /proc/mounts > mntcnt.txt	 Normal termination, exit status = 0
+2016-08-09 10:32:56 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 1
+2016-08-09 10:32:56 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 10:32:56 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 1
+2016-08-09 10:32:56 mount /dev/sdb1 fail
+2016-08-09 10:45:52 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 0
+2016-08-09 10:45:53 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 1
+2016-08-09 10:45:53 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 10:45:53 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 1
+2016-08-09 10:45:53 final umount /dev/sdb1 fail
+2016-08-09 10:51:20 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 0
+2016-08-09 10:51:21 cmd: umount /dev/sdb1	 Normal termination, exit status = 0
+2016-08-09 10:51:21 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 1
+2016-08-09 10:51:21 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 10:51:21 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 1
+2016-08-09 10:51:21 mount /dev/sdb1 fail
+2016-08-09 10:52:47 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 10:52:47 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 1
+2016-08-09 10:52:47 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 10:52:47 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 1
+2016-08-09 10:52:47 mount /dev/sdb1 fail
+2016-08-09 10:57:59 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 10:58:00 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 1
+2016-08-09 10:58:01 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 10:58:01 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 1
+2016-08-09 10:58:01 mount /dev/sdb1 fail
+2016-08-09 11:01:40 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 11:01:40 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 1
+2016-08-09 11:01:40 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 11:01:40 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 1
+2016-08-09 11:01:40 mount /dev/sdb1 fail
+2016-08-09 13:21:56 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 13:21:57 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 0
+2016-08-09 13:21:59 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 13:22:01 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 0
+2016-08-09 13:22:01 mount /dev/sdb1 fail
+2016-08-09 13:28:17 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 13:28:17 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 0
+2016-08-09 13:29:29 cmd: grep -c /dev/ sd1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 2
+2016-08-09 13:29:29 cmd: (echo d && echo w) | fdisk /dev/ sd	 Normal termination, exit status = 1
+2016-08-09 13:29:29 cmd: echo Ignore | parted /dev/ sd mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 13:29:34 cmd: grep -c /dev/ sd1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 2
+2016-08-09 13:29:34 cmd: (echo d && echo w) | fdisk /dev/ sd	 Normal termination, exit status = 1
+2016-08-09 13:29:34 cmd: echo Ignore | parted /dev/ sd mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 13:34:20 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 13:34:21 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 0
+2016-08-09 13:35:18 cmd: grep -c /dev/ sd1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 2
+2016-08-09 13:35:18 cmd: (echo d && echo w) | fdisk /dev/ sd	 Normal termination, exit status = 1
+2016-08-09 13:45:03 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 13:45:03 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 0
+2016-08-09 13:45:05 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 13:45:47 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 13:45:47 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 0
+2016-08-09 13:45:49 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 13:45:52 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 0
+2016-08-09 13:45:52 mount /dev/sdb1 fail
+2016-08-09 13:46:06 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 13:46:06 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 0
+2016-08-09 13:46:08 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 13:46:11 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 0
+2016-08-09 13:46:11 mount /dev/sdb1 fail
+2016-08-09 13:51:01 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 13:51:01 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 0
+2016-08-09 13:51:03 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 13:51:06 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 0
+2016-08-09 13:52:58 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 13:52:58 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 0
+2016-08-09 13:53:00 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 13:53:03 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 0
+2016-08-09 13:56:30 cmd: grep -c /dev/sdb1 /etc/mtab > mntcnt.txt	 Normal termination, exit status = 1
+2016-08-09 13:56:30 cmd: (echo d && echo w) | fdisk /dev/sdb	 Normal termination, exit status = 0
+2016-08-09 13:56:32 cmd: echo Ignore | parted /dev/sdb mkpart primary 0 31GB	 Normal termination, exit status = 0
+2016-08-09 13:56:34 cmd: mkfs.vfat /dev/sdb1	 Normal termination, exit status = 0
