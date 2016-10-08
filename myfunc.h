@@ -9,23 +9,25 @@
 #include <stdarg.h>
 #include <errno.h>
 #include <sys/types.h>
-#include<sys/wait.h>
+#include <sys/wait.h>
 #include <fcntl.h>
 
-#define BUFSIZE 2
+#define BUFSIZE 8
+#define CMDSIZE 128
 
 /*定义system将要使用的指令字串*/
-//const char *diskcmd = "fdisk -l > diskmsg.txt"; 
-//const char *sdbcnt_cmd = "grep -c  /dev/sdb diskmsg.txt > sdbcnt.txt"; 
-//const char *dfcmd = "df > dfmsg.txt";	
-//const char *mntcnt_cmd = "grep -c  /dev/sdb1 dfmsg.txt > mntcnt.txt";	
-const char *mntcnt_cmd = "grep -c  /dev/sdb1 /etc/mtab > mntcnt.txt";	
+//const char *mntcnt_cmd = "grep -c  /dev/sdb1 /proc/mounts > mntcnt.txt";	
 
-const char *fdiskcmd = "./fdisk.sh | sudo fdisk /dev/sdb"; 
-const char *umntcmd = "umount /dev/sdb1";	
-const char *fmtcmd = "mkfs.vfat /dev/sdb1"; 
-//const char *fmtcmd = "mkfs -t fat32 /dev/sdb1"; /*ubuntu10.04不可用*/
-//const char *mntcmd = "mount -t vfat /dev/sdb1 /mnt/upoint"; 
+/*用parted中的rm命令删除分区，当磁盘卸载了，但有时出现删除不成功:提示设备挂载中*/
+//const char *delpart_cmd = "parted /dev/sdc rm 1"; 
+/*最终采用fdisk来删除分区*/
+//const char *delpart_cmd = "(echo d && echo w) | fdisk /dev/sdb";
+
+//const char *fdiskcmd = "echo Ignore | parted /dev/sdb mkpart primary 0 31GB";
+//const char *umntcmd = "umount /dev/sdb1";	
+
+/*可在fdiskcmd中一起加入格式化命令，但挂载出现无法加载超级块，此处单独格式化*/
+//const char *fmtcmd = "mkfs.vfat /dev/sdb1"; 
 
 /*system执行返回检测函数*/
 void stat_check(int status, const char *cmdstring);
